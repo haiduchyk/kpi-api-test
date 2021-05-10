@@ -43,11 +43,50 @@ public class TodoistEndPoint
                 .response();
     }
 
-    public Response deleteTask(String id)
+    public Response deleteProject(String id)
     {
         return given()
                 .when()
                 .delete(String.format("/projects/%s", id))
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response getActiveTasks()
+    {
+        return given()
+                .when()
+                .get("/tasks")
+                .then()
+                .extract()
+                .response();
+    }
+
+    public Response deleteTask(String id)
+    {
+        return given()
+                .when()
+                .delete(String.format("/tasks/%s", id))
+                .then()
+                .extract()
+                .response();
+    }
+
+
+    public Response createTask(String content)
+    {
+        JSONObject body = new JSONObject();
+
+        body.put("content", content);
+        body.put("due_string", "tomorrow at 12:00");
+        body.put("due_lang", "en");
+        body.put("priority", 1);
+
+        return given()
+                .body(body.toJSONString())
+                .when()
+                .post("/tasks")
                 .then()
                 .extract()
                 .response();
