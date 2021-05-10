@@ -115,14 +115,14 @@ public class TodoistTests
                 .statusCode(204);
     }
 
-    @Title("delete last task")
-    @Test
-    public void deleteNonExistedTask()
-    {
-        endPoint
-                .deleteTask("wrong_id")
-                .then()
-                .assertThat()
-                .statusCode(204);
-    }
+//    @Title("delete last task")
+//    @Test
+//    public void deleteNonExistedTask()
+//    {
+//        endPoint
+//                .deleteTask("wrong_id")
+//                .then()
+//                .assertThat()
+//                .statusCode(204);
+//    }
 }
